@@ -1,0 +1,24 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>firebase</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  
+  <ion-list>
+      <ion-list-header>Device-List</ion-list-header>
+      <ion-item *ngFor="let device of devicelist" >    
+          {{device.$key}} : {{device.control}}
+          <div *ngIf="device.control==0">เปิด</div>
+          <div *ngIf="device.control==1">ปิด</div>                 
+      </ion-item>
+  </ion-list>
+
+
+</ion-content>
