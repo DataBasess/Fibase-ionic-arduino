@@ -11,6 +11,7 @@ import { Device } from '../../model/device';
 export class FirebasePage {
 
   devicelist:Device[];
+  device:Device;
   
 
   constructor(
@@ -22,10 +23,35 @@ export class FirebasePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FirebasePage');
-    this.db.getDevice().subscribe(datalist=>{
+    /* this.db.getListDevice().subscribe(datalist=>{
       this.devicelist = datalist;
       console.log(this.devicelist);
+    }) */
+    this.db.searchObjectDevice('').subscribe(dataobject=>{
+      this.device = dataobject;
+      console.log('Object',this.device);
     })
+
+    this.db.searchListDevice('','').subscribe(datalist=>{
+      this.devicelist = datalist;
+      console.log('List',this.devicelist);
+    })
+  }
+
+  
+
+  switchDevice(device:Device){
+    console.log('Deviec',device.$key);
+    if(device.control===1){
+      console.log('Deviec',0);
+      this.db.switchDevice(device.$key,0);
+      
+    }
+    if(device.control===0){
+      console.log('Deviec',1);
+      this.db.switchDevice(device.$key,1);
+    }
+    
   }
 
 }

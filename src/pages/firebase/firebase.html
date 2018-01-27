@@ -13,7 +13,8 @@
   
   <ion-list>
       <ion-list-header>Device-List</ion-list-header>
-      <ion-item *ngFor="let device of devicelist" >    
+      <ion-item *ngFor="let device of devicelist" (click)="switchDevice(device)">
+          <ion-icon name='{{device.icon}}' item-start></ion-icon>    
           {{device.$key}} : {{device.control}}
           <div *ngIf="device.control==0">เปิด</div>
           <div *ngIf="device.control==1">ปิด</div>                 
