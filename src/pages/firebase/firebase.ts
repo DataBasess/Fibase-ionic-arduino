@@ -11,7 +11,7 @@ import { Device } from '../../model/device';
 export class FirebasePage {
 
   devicelist:Device[];
-  device:Device;
+  dataobject:Device;
   
 
   constructor(
@@ -27,9 +27,9 @@ export class FirebasePage {
       this.devicelist = datalist;
       console.log(this.devicelist);
     }) */
-    this.db.searchObjectDevice('').subscribe(dataobject=>{
-      this.device = dataobject;
-      console.log('Object',this.device);
+    this.db.searchObjectDevice('Light_bulb').subscribe(dataobject=>{
+      this.dataobject = dataobject;
+      console.log('Object',this.dataobject);
     })
 
     this.db.searchListDevice('','').subscribe(datalist=>{

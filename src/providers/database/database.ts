@@ -67,7 +67,7 @@ export class DatabaseProvider {
     }
     
   }
-
+  //ใช้สำหรับค้นหาข้อมูลข้อมูลแบบ
   searchObjectDevice(key:any):FirebaseObjectObservable<Device>{    
     return this.databaseRD.object('/device/'+key);
   }
