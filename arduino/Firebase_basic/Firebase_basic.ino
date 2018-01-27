@@ -49,7 +49,7 @@ void loop() {
   int L = Firebase.getInt("device/Light_bulb/control");
   digitalWrite(Light_bulb, Firebase.getInt("device/Light_bulb/control"));
   Serial.println(L);
-  delay(1000);
+  //delay(1000);
   
   float h = dht.readHumidity();
   float t = dht.readTemperature();
@@ -62,14 +62,14 @@ void loop() {
   
   Serial.print("Humidity: ");
   Serial.print(h);
-  Firebase.setInt("device/Humidity/control", h);
+  Firebase.setFloat("device/Humidity/control", h);
   Serial.print(" %\t");
   Serial.print("Temperature: ");
   Serial.print(t);
-  Firebase.setInt("device/Temperature_Celsius/control", t);
+  Firebase.setFloat("device/Temperature_Celsius/control", t);
   Serial.print(" *C ");
   Serial.print(f);
-  Firebase.setInt("device/Temperature_Fahrenheit/control", f);
+  Firebase.setFloat("device/Temperature_Fahrenheit/control", f);
   Serial.print(" *F\t\n");
   
 }
