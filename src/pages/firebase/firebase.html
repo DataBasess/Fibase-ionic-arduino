@@ -11,7 +11,7 @@
 <ion-content padding>  
   <ion-list>
       <ion-list-header>Device-List</ion-list-header>
-      <ion-item *ngFor="let device of devicelist">
+      <ion-item *ngFor="let device of devicelist" (click)="switchDevice(device)">
           <ion-icon *ngIf="device.$key!='Light_bulb'" name='{{device.icon}}' item-start></ion-icon>
           <ion-icon *ngIf="device.$key=='Light_bulb'" name='{{device.icon}}' item-start (click)="switchDevice(device)" color="primary"></ion-icon>           
           {{device.$key}} : {{device.control}}
