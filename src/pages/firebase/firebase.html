@@ -19,4 +19,20 @@
           <div *ngIf="device.control==1">ปิด</div>                 
       </ion-item>
   </ion-list>
+  <p>{{ timeNow  }}</p>
+  <ion-item>
+      <ion-label>Time Morning</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="dataobject.time_morning"></ion-datetime>
+  </ion-item>
+  <ion-item>
+      <ion-label>Time Noon</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="dataobject.time_noon"></ion-datetime>
+  </ion-item>
+  <ion-item>
+      <ion-label>Time Night</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="dataobject.time_night"></ion-datetime>
+  </ion-item>
+  <div padding>
+      <button ion-button full (click)="setTime(dataobject)">SetTime</button>
+  </div>
 </ion-content>

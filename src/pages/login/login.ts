@@ -14,7 +14,10 @@ export class LoginPage {
   user:User={username:'anuson',password:'1234'};
   message:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {
   }
 
   ionViewDidLoad() {
@@ -25,9 +28,13 @@ export class LoginPage {
 
   login(user:User){
      console.log(user);
+     
+
      if(user.username=='anuson'&&user.password=='1234'){
        console.log("login");
-       this.navCtrl.push('FirebasePage');       
+       //this.navCtrl.push('FirebasePage');
+       this.navCtrl.push('FirebasePage');
+
      }else{
       console.log("Not login");
       this.message = 'Username or Password Woring';       

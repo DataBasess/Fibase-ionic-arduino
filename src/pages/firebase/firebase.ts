@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Device } from '../../model/device';
+import { DateTime } from 'ionic-angular/components/datetime/datetime';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,10 @@ import { Device } from '../../model/device';
 export class FirebasePage {
 
   devicelist:Device[];
-  dataobject:Device;
+  dataobject:Device = new Device(
+    '',1,'','08:00','12:00','18:00'
+  );
+  timeNow:Date;
   
 
   constructor(
@@ -19,18 +23,29 @@ export class FirebasePage {
     public navParams: NavParams,
     private db:DatabaseProvider
   ) {
+    setInterval(() => {
+      this.timeNow = new Date();      
+      let Hours = this.timeNow.getHours();
+      let Minutes = this.timeNow.getMinutes();
+      let HM = Hours+':'+Minutes;
+      console.log(Hours+':'+Minutes);
+      this.db.setObjectDevice('Light_bulb/time_now',HM)
+      .then(result=>{
+        console.log(result);        
+      })
+    }, 30000);
   }
+    
+    
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {    
+    
     console.log('ionViewDidLoad FirebasePage');
-    /* this.db.getListDevice().subscribe(datalist=>{
-      this.devicelist = datalist;
-      console.log(this.devicelist);
-    }) */
-    this.db.searchObjectDevice('Light_bulb').subscribe(dataobject=>{
+    
+    /* this.db.searchObjectDevice('Light_bulb').subscribe(dataobject=>{
       this.dataobject = dataobject;
       console.log('Object',this.dataobject);
-    })
+    }) */
 
     this.db.searchListDevice('','').subscribe(datalist=>{
       this.devicelist = datalist;
@@ -40,7 +55,7 @@ export class FirebasePage {
 
   
 
-  switchDevice(device:Device){
+  switchDevice(device){
     console.log('Deviec',device.$key);
     if(device.control===1){
       console.log('Deviec',0);
@@ -53,5 +68,15 @@ export class FirebasePage {
     }
     
   }
+
+  setTime(device){
+    console.log(device);
+    this.db.updateObjectDevice('Light_bulb',device)
+    .then(result=>{
+      console.log(result);      
+    })
+  }
+
+
 
 }
