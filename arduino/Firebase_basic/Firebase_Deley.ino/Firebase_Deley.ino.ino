@@ -3,7 +3,7 @@
 
 
 #define WIFI_SSID       "Anusorn"
-#define WIFI_PASSWORD   "12345678"
+#define WIFI_PASSWORD   "anusondd"
 
 #define FIREBASE_HOST "app-host-2c179.firebaseio.com"
 #define FIREBASE_AUTH "bKXwX7BBivkq2GvJKWwa3sz2Mf78erPFb71vXM70"

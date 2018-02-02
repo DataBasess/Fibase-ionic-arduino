@@ -9,6 +9,9 @@ import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
 // for AngularFireDatabase
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { DatabaseProvider } from '../providers/database/database';
@@ -33,6 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     AngularFireDatabaseModule,
     //AngularFireDatabase
+    AngularFireAuthModule
+  
   ],
   bootstrap: [IonicApp],
   entryComponents: [

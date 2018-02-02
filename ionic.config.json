@@ -1,6 +1,6 @@
 {
   "name": "Fibase-ionic-arduino",
-  "app_id": "",
+  "app_id": "2a9f653c",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

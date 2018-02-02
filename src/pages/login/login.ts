@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../model/user';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -16,7 +17,8 @@ export class LoginPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    private  auth: AngularFireAuth
   ) {
   }
 
@@ -28,9 +30,17 @@ export class LoginPage {
 
   login(user:User){
      console.log(user);
+
+     this.auth.auth.signInWithEmailAndPassword(user.username,user.password).then(result=>{
+        this.navCtrl.push('FirebasePage');
+        localStorage.setItem('ID','1');
+     }).catch(error=>{
+       console.log(error);
+       this.message = error.message;       
+     })
      
 
-     if(user.username=='anuson'&&user.password=='1234'){
+     /* if(user.username=='anuson'&&user.password=='1234'){
        console.log("login");
        //this.navCtrl.push('FirebasePage');
        this.navCtrl.push('FirebasePage');
@@ -38,8 +48,10 @@ export class LoginPage {
      }else{
       console.log("Not login");
       this.message = 'Username or Password Woring';       
-     }
+     } */
      
   }
+
+
 
 }

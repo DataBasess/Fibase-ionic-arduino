@@ -23,6 +23,10 @@ export class FirebasePage {
     public navParams: NavParams,
     private db:DatabaseProvider
   ) {
+
+    let id = localStorage.getItem('ID');
+    localStorage.clear();
+
     setInterval(() => {
       this.timeNow = new Date();      
       let Hours = this.timeNow.getHours();
