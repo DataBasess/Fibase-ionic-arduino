@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule } from '@angular/common/http';
+import { PowerProvider } from '../providers/power/power';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider
+    DatabaseProvider,
+    PowerProvider
   ]
 })
 export class AppModule {}

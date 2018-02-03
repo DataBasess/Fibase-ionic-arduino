@@ -12,7 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginPage {
 
-  user:User={username:'anuson',password:'1234'};
+  user:User={username:'anusondd@gmail.com',password:'12345678'};
   message:string;
 
   constructor(
@@ -32,7 +32,7 @@ export class LoginPage {
      console.log(user);
 
      this.auth.auth.signInWithEmailAndPassword(user.username,user.password).then(result=>{
-        this.navCtrl.push('FirebasePage');
+        this.navCtrl.push('TabsPage');
         localStorage.setItem('ID','1');
      }).catch(error=>{
        console.log(error);
