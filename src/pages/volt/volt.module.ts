@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { VoltPage } from './volt';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { VoltPage } from './volt';
   ],
   imports: [
     IonicPageModule.forChild(VoltPage),
+    ChartsModule
   ],
 })
 export class VoltPageModule {}

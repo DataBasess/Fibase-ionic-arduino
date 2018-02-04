@@ -29,7 +29,7 @@
 
   int dst = 0;
   unsigned long lastUpdateEnergy = 0, lastUpdateFirebase = 0;
-  float Volt, Amp, Power;
+  float Volt, Amp, Power, Count ;
   unsigned long Energy = 0;
 
 PZEM004T pzem(D6,D7);  // (RX,TX) connect to TX,RX of PZEM
@@ -73,15 +73,15 @@ void setup() {
 
 void loop() {
 
-  float powers = 0.0;
+  Count = Firebase.getFloat("/powerPlug/count");
 
   digitalWrite(Deley1, Firebase.getInt("device/Deley1/control"));
-  Serial.println("Deley1");
-  Serial.println(Deley1);
+  //Serial.println("Deley1");
+  //Serial.println(Deley1);
   
   digitalWrite(Deley2, Firebase.getInt("device/Deley2/control"));
-  Serial.println("Deley2");
-  Serial.println(Deley2);
+  //Serial.println("Deley2");
+  //Serial.println(Deley2);
 
   if ((millis() - lastUpdateEnergy) >= 1000) {
     lastUpdateEnergy = millis();
@@ -115,7 +115,7 @@ void loop() {
     root["amp"] = Amp;
     root["time"] = getTime();
 
-    String name = Firebase.push("/logPower", root);
+    String name = Firebase.push("/powerPlug/logPower", root);
     // handle error
     if (Firebase.failed()) {
       Serial.print("pushing failed:");
@@ -125,22 +125,34 @@ void loop() {
     Serial.print("pushed: /logPower/");
     Serial.println(name);
 
-    Firebase.setInt("/energy", Energy);
+    Firebase.setInt("/powerPlug/energy", Energy);
     if (Firebase.failed()) {
       Serial.print("pushing failed:");
       Serial.println(Firebase.error());
       return;
     }
 
-    Firebase.setFloat("/amount", calBill(Energy / 1000, FIX_FT, false));
+    Firebase.setFloat("/powerPlug/amount", calBill(Energy / 1000, FIX_FT, false));
     if (Firebase.failed()) {
       Serial.print("pushing failed:");
       Serial.println(Firebase.error());
       return;
     }
+    Count = Count + ((Power/(1000*3600))*30);
+    if(Count>0.00001){
+      Firebase.setFloat("/powerPlug/count", Count);
+      Serial.print("Count:");
+      Serial.print(Count);
+      if (Firebase.failed()) {
+        Serial.print("pushing failed:");
+        Serial.println(Firebase.error());
+        return;
+      }
+    }
+    
   }
 
-  delay(0); // Disable WDT
+  
 }
 
 String getTime() {
