@@ -10,27 +10,30 @@
 <ion-content padding>
     <ion-card>
 
-        <!-- <img src="assets/img/bjork-live.jpg"/> -->
+        <img *ngIf="switchPower==1" src="assets/imgs/Dark.png"  (click)="updatePower(switchPower)"/>
+        <img *ngIf="switchPower==0" src="assets/imgs/Light.png" (click)="updatePower(switchPower)"/>       
     
         <ion-card-content>
           <ion-card-title>
-            Björk
+            สถานะปลั๊กไฟ
           </ion-card-title>
-          <p>
+          <!-- <p>
             Björk first came to prominence as one of the lead vocalists of the avant pop Icelandic sextet the Sugarcubes, but when...
-          </p>
+          </p> -->
         </ion-card-content>
     
         <ion-item>
-          <ion-icon name='musical-notes' item-start style="color: #d03e84"></ion-icon>
-          Albums
-          <ion-badge item-end>9</ion-badge>
+          <ion-icon name='logo-bitcoin' item-start style="color: #faf67c"></ion-icon>
+          ค่าไฟฟ้า/บาท   : 
+          <!-- <ion-badge item-end>{{amount}}</ion-badge> -->
+          <h1>{{amount}}</h1>
         </ion-item>
     
         <ion-item>
-          <ion-icon name='logo-twitter' item-start style="color: #55acee"></ion-icon>
-          Followers
-          <ion-badge item-end>260k</ion-badge>
+          <ion-icon name='md-speedometer' item-start style="color: #55acee"></ion-icon>
+          กำลังไฟฟ้า/Wh  :
+          <!-- <ion-badge item-end color="light">{{energy}}</ion-badge> -->
+          <h1>{{energy}}</h1>
         </ion-item>
     
     </ion-card>

@@ -43,4 +43,15 @@ export class PowerPage {
 
   }
 
+  updatePower(switchPower:number){
+    let power;
+    switchPower == 1 ? power = 0 : power = 1;
+    this.power.updateSwitch(power).then(()=>{
+      console.log(power);      
+    }).catch(e=>{
+      console.error(e);      
+    })
+
+  }
+
 }

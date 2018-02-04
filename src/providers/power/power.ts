@@ -26,7 +26,7 @@ export class PowerProvider {
   }
 
   updateSwitch(switchPower:number):Promise<void>{
-    return this.db.object('/device/Deley2/control').update(switchPower);
+    return this.db.object('/device/Deley2/control').set(switchPower);
   }
 
   getLogPower():FirebaseListObservable<logPower[]>{

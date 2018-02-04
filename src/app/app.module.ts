@@ -17,6 +17,7 @@ import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpClientModule } from '@angular/common/http';
 import { PowerProvider } from '../providers/power/power';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PowerProvider } from '../providers/power/power';
     }),
     AngularFireDatabaseModule,
     //AngularFireDatabase
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartsModule
   
   ],
   bootstrap: [IonicApp],
